@@ -54,8 +54,8 @@ jobs:
       GH_TOKEN: ${{ github.token }}
       ISITE_VERSION: v0.2.4
       ZOLA_VERSION: v0.20.0
-      USER: ${{ github.repository_owner }}
-      REPO: ${{ github.event.repository.name }}
+      USER: imjuya
+      REPO: juya-ai-daily
       BASE_URL: https://simplecode101.github.io/juya-ai-daily-minimal
     steps:
       - name: Checkout
