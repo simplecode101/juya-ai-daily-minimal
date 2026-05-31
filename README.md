@@ -10,8 +10,8 @@ RSS正常提供服务中，但Folo存在问题，接收不到最新文章。建�
 
 | Platform | Link |
 | :--- | :--- |
-| RSS Feed | [Subscribe](https://imjuya.github.io/juya-ai-daily/rss.xml) |
-| Markdown 备份 | [BACKUP](https://github.com/imjuya/juya-ai-daily/tree/master/BACKUP) |
+| RSS Feed | [Subscribe](https://simplecode101.github.io/juya-ai-daily-minimal/rss.xml) |
+| Markdown 备份 | [BACKUP](https://github.com/simplecode101/juya-ai-daily-minimal/tree/master/BACKUP) |
 | GitHub Pages | [View](https://imjuya.github.io/juya-ai-daily/) |
 | 第三方多功能阅读器（@ViggoZ 制作） | [juya-daily](https://viggoz.github.io/juya-daily/) |
 | AI早报 视频版-Bilibili | [Bilibili](https://space.bilibili.com/285286947) |
