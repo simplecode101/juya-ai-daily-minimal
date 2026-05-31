@@ -413,9 +413,11 @@ class WebfeedsExtension(BaseExtension):
         return self._logo
 
 
-def generate_rss_feed(repo, filename, me):
-    pages_site_url = f"{get_pages_base_url(repo.full_name)}/"
-    feed_self_url = get_repo_pages_feed_url(repo, filename)
+def generate_rss_feed(repo, filename, me, repo_name=None):
+    # repo 用于读取上游 Issue，repo_name 用于生成 fork 的 RSS 链接
+    pages_repo_name = repo_name if repo_name else repo.full_name
+    pages_site_url = f"{get_pages_base_url(pages_repo_name)}/"
+    feed_self_url = get_pages_feed_url(pages_repo_name, filename)
     generator = FeedGenerator()
     generator.id(repo.html_url)
     generator.title("橘鸦AI早报")
@@ -458,7 +460,7 @@ def generate_rss_feed(repo, filename, me):
             break
         if not issue.body or not is_me(issue, me) or issue.pull_request:
             continue
-        issue_pages_url = get_repo_pages_issue_url(repo, issue.number)
+        issue_pages_url = get_pages_feed_url(pages_repo_name, f"issue-{issue.number}/")
         item = generator.add_entry(order="append")
         item.id(issue.html_url)
         item.link(href=issue_pages_url)
@@ -489,7 +491,7 @@ def main(token, repo_name, issue_number=None, dir_name=BACKUP_DIR):
     # add footer with credits
     add_md_footer("README.md")
 
-    generate_rss_feed(repo, PRIMARY_FEED_FILENAME, me)
+    generate_rss_feed(repo, PRIMARY_FEED_FILENAME, me, repo_name)
     to_generate_issues = get_to_generate_issues(repo, dir_name, me, issue_number)
 
     # save md files to backup folder
