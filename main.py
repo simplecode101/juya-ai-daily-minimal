@@ -416,10 +416,11 @@ class WebfeedsExtension(BaseExtension):
 def generate_rss_feed(repo, filename, me, repo_name=None):
     # repo 用于读取上游 Issue，repo_name 用于生成 fork 的 RSS 链接
     pages_repo_name = repo_name if repo_name else repo.full_name
+    fork_repo_url = f"https://github.com/{pages_repo_name}"
     pages_site_url = f"{get_pages_base_url(pages_repo_name)}/"
     feed_self_url = get_pages_feed_url(pages_repo_name, filename)
     generator = FeedGenerator()
-    generator.id(repo.html_url)
+    generator.id(fork_repo_url)
     generator.title("橘鸦AI早报")
     generator.description(
         f"资讯内容由AI辅助生成，可能存在错误，请以原始信息出处和官方信息为准。{RSS_SERVICE_NOTICE}"
@@ -462,7 +463,7 @@ def generate_rss_feed(repo, filename, me, repo_name=None):
             continue
         issue_pages_url = get_pages_feed_url(pages_repo_name, f"issue-{issue.number}/")
         item = generator.add_entry(order="append")
-        item.id(issue.html_url)
+        item.id(f"{fork_repo_url}/issues/{issue.number}")
         item.link(href=issue_pages_url)
         item.title(issue.title)
         item.author({"name": "Juya"})
