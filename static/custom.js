@@ -1,4 +1,28 @@
 ; (function () {
+  function trimTextNode(node) {
+    if (node && node.nodeType === 3) {
+      node.textContent = node.textContent.replace(/^\s+/, "").replace(/\s+$/, "")
+      if (!node.textContent) node.remove()
+    }
+  }
+
+  function hideRankMarkers() {
+    document.querySelectorAll("code").forEach(function (el) {
+      if (/^#\d+$/.test(el.textContent.trim())) {
+        trimTextNode(el.previousSibling)
+        trimTextNode(el.nextSibling)
+        el.remove()
+      }
+    })
+    document.querySelectorAll("a").forEach(function (el) {
+      if (el.textContent.trim() === "↗") {
+        trimTextNode(el.previousSibling)
+        trimTextNode(el.nextSibling)
+        el.remove()
+      }
+    })
+  }
+
   function initTocFab() {
     var toc = document.getElementById("post-toc")
     if (!toc) return
@@ -133,9 +157,41 @@
     onWidthChange()
   }
 
+  function initImgLightbox() {
+    var overlay = document.createElement("div")
+    overlay.className = "img-lightbox-overlay"
+    overlay.style.cssText = "display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:999;cursor:zoom-out;align-items:center;justify-content:center"
+    overlay.addEventListener("click", function () { overlay.style.display = "none" })
+
+    var img = document.createElement("img")
+    img.style.cssText = "max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px;box-shadow:0 4px 32px rgba(0,0,0,0.5)"
+    overlay.appendChild(img)
+    document.body.appendChild(overlay)
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") overlay.style.display = "none"
+    })
+
+    var imgs = document.querySelectorAll(".post-content img, main img, article img")
+    imgs.forEach(function (el) {
+      el.style.cursor = "zoom-in"
+      el.addEventListener("click", function (e) {
+        e.stopPropagation()
+        img.src = el.src
+        overlay.style.display = "flex"
+      })
+    })
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initTocFab)
+    document.addEventListener("DOMContentLoaded", function () {
+      hideRankMarkers()
+      initTocFab()
+      initImgLightbox()
+    })
   } else {
+    hideRankMarkers()
     initTocFab()
+    initImgLightbox()
   }
 })()

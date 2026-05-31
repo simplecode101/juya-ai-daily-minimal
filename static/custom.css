@@ -14,10 +14,10 @@
   --juya-green: rgb(160, 249, 176);
 
   /* 背景色 */
-  --bg-cream: rgb(250, 249, 245);
-  --bg-card: rgb(253, 252, 250);
-  --bg-section: rgb(240, 238, 230);
-  --bg-alt: rgb(248, 247, 242);
+  --bg-cream: rgb(253, 250, 248);
+  --bg-card: rgb(254, 253, 251);
+  --bg-section: rgb(248, 245, 241);
+  --bg-alt: rgb(250, 248, 245);
   --bg-white: rgb(255, 255, 255);
 
   /* 文字色 */
@@ -47,9 +47,9 @@ body {
   padding: 0;
   background: var(--bg-cream);
   font-family: var(--font-serif);
-  font-size: 16px;
+  font-size: 16px !important;
+  line-height: 1.6;
   color: var(--text-black);
-  line-height: 1.5em;
   word-spacing: 0em;
   letter-spacing: 0em;
   word-break: break-word;
@@ -71,7 +71,7 @@ main {
 
 /* 段落中直接包含的图片（Markdown 会把独立图片包在 <p> 中） */
 p>img {
-  margin: 5px auto;
+  margin: 16px auto;
 }
 
 /* ========================================
@@ -106,7 +106,7 @@ h1,
   text-align: center;
   color: var(--juya-orange) !important;
   font-weight: bold !important;
-  font-size: 18px !important;
+  font-size: 28px !important;
   text-decoration: none !important;
 }
 
@@ -117,7 +117,7 @@ h1 em,
 .blog-title,
 .post__title a {
   color: var(--juya-orange) !important;
-  font-size: 18px !important;
+  font-size: inherit !important;
   background: none 0% 0% / auto no-repeat scroll padding-box border-box rgba(252, 140, 50, 0);
   line-height: 1.5em;
   letter-spacing: 0.06em;
@@ -134,59 +134,39 @@ h1 em,
    ======================================== */
 
 h2 {
-  margin: 30px 10px 15px !important;
-  padding: 12px 18px !important;
-  border: none !important;
-  background-color: var(--bg-section) !important;
-  box-shadow: none !important;
-  display: block;
-  font-size: 16px !important;
+  font-size: 20px !important;
   font-weight: bold !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 1em 0 0.5em 18px !important;
   color: var(--text-dark) !important;
-  line-height: 1.5em !important;
-  letter-spacing: 0.06em;
-  text-align: left !important;
-  border-radius: 12px !important;
-  word-break: break-all;
-  overflow: hidden;
 }
 
 h2 span,
-h2 a,
 h2 em {
-  font-size: inherit;
-  color: inherit;
-  line-height: inherit;
-  letter-spacing: 0.06em;
-  padding: 0;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  display: inline;
   font-weight: inherit;
-  font-style: normal;
-  margin: 0;
+  font-style: inherit;
+}
+
+h2 a::before {
+  content: "# ";
+}
+
+h2 a {
   text-decoration: none;
 }
 
-/* H2 内的小标签 (匹配 inlineCode 的参数) */
+/* H2 内的小标签 */
 h2 code,
 h2 .tag {
-  color: var(--juya-orange) !important;
-  font-size: 0.9em !important;
-  line-height: 1.8em !important;
-  letter-spacing: 0;
-  background-color: var(--bg-card) !important;
-  font-family: var(--font-mono) !important;
-  word-break: break-all;
-  border: 0.5px solid var(--border-light) !important;
-  border-radius: 6px !important;
-  padding: 2px 4px !important;
-  margin: 0 2px !important;
-  vertical-align: baseline !important;
-  transform: translateY(-4px) !important;
-  font-weight: normal !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  color: inherit !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
 }
 
 /* ========================================
@@ -194,41 +174,18 @@ h2 .tag {
    ======================================== */
 
 h3 {
-  margin: 16px auto 10px auto;
-  align-items: unset;
-  background: none 0% 0% / auto no-repeat scroll padding-box border-box transparent;
-  border: none;
-  border-bottom: 2px solid var(--juya-orange);
-  border-radius: 0px;
-  box-shadow: none;
-  display: block;
-  width: fit-content;
-  flex-direction: unset;
-  float: unset;
-  height: auto;
-  justify-content: unset;
-  line-height: 1.5em;
-  overflow: unset;
-  padding: 0px 5px;
-  text-align: center;
-  text-shadow: none;
-  transform: none;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  margin: 16px 0 10px 18px;
+  padding: 0;
+  text-align: left;
 }
 
 h3 span,
 h3 a,
 h3 em,
 h3 strong {
-  font-size: 15px;
-  color: var(--text-dark);
-  line-height: 1.5em;
-  letter-spacing: 0.06em;
-  padding: 2px 0px;
-  background: none 0% 0% / auto no-repeat scroll padding-box border-box rgba(252, 140, 50, 0);
-  display: inline-block;
-  font-weight: bold;
-  margin: 0px;
-  text-align: center;
+  font-weight: inherit;
 }
 
 /* ========================================
@@ -253,13 +210,11 @@ h6 {
 
 p {
   color: var(--text-dark);
-  font-size: 15px;
-  line-height: 1.8em;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-align: left;
   text-indent: 0;
-  margin: 0 18px;
-  padding: 5px 0;
+  margin: 0.25em 18px !important;
+  padding: 0 !important;
 }
 
 /* ========================================
@@ -281,38 +236,22 @@ ol {
 }
 
 li {
-  margin: 5px 0;
   color: var(--text-black);
   font-size: 14px;
   line-height: 1.8em;
   letter-spacing: 0.06em;
   text-align: left;
-  font-weight: normal;
 }
 
 /* 列表项中的代码标签 */
 li code,
 li .tag {
-  background-attachment: scroll !important;
-  background-clip: border-box !important;
-  background-image: none !important;
-  background-origin: padding-box !important;
-  background-position: left top !important;
-  background-repeat: no-repeat !important;
-  background-size: auto !important;
-  width: auto !important;
-  margin: 0 2px !important;
-  overflow-wrap: break-word !important;
-  word-break: break-all !important;
-  font-size: 0.9em !important;
-  font-family: var(--font-mono) !important;
-  padding: 2px 4px !important;
-  vertical-align: baseline !important;
-  transform: translateY(-2px) !important;
-  background-color: var(--bg-card) !important;
-  color: var(--juya-orange) !important;
-  border: 0.5px solid var(--border-light) !important;
-  border-radius: 6px !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  color: inherit !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
 }
 
 /* ========================================
@@ -324,29 +263,30 @@ blockquote {
   margin: 20px 10px 10px !important;
   padding: 12px 16px !important;
   background-color: var(--bg-card) !important;
-  background-image: none !important;
-  width: auto;
-  height: auto;
-  box-shadow: none !important;
-  display: block;
-  overflow: auto;
-  border: 0.8px solid var(--border-medium) !important;
-  border-left: 0.8px solid var(--border-medium) !important;
-  border-radius: 12px !important;
+  border: none !important;
+  border-left: 4px solid var(--juya-orange) !important;
+  border-radius: 0 !important;
   color: var(--text-dark) !important;
 }
 
 main .post blockquote p,
 blockquote p {
-  text-indent: 0;
-  padding: 0 !important;
-  color: var(--text-dark) !important;
-  font-size: 15px !important;
-  line-height: 1.8em !important;
-  letter-spacing: 0.06em;
-  text-align: left;
-  font-weight: normal;
   margin: 0 !important;
+  padding: 0 !important;
+  font-size: 14px;
+}
+
+blockquote strong,
+blockquote b {
+  font-weight: normal !important;
+}
+
+blockquote code {
+  font-family: inherit !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: inherit !important;
 }
 
 /* ========================================
@@ -385,36 +325,16 @@ pre code {
    行内代码样式
    ======================================== */
 
-/* 对抗 site.css 默认的 p code 或者 generic code 大小跟颜色 (完全恢复参考样式 inlineCode) */
+/* 行内代码：统一渲染为正文 */
 main .post :not(pre)>code,
 code {
-  color: var(--juya-orange) !important;
-  font-size: 0.9em !important;
-  line-height: 1.8em !important;
-  letter-spacing: 0;
-  background-color: var(--bg-card) !important;
-  font-family: var(--font-mono) !important;
-  word-break: break-all;
-  border: 0.5px solid var(--border-light) !important;
-  border-radius: 6px !important;
-  padding: 2px 4px !important;
-  margin: 0 2px !important;
-  vertical-align: baseline !important;
-  transform: translateY(-4px) !important;
-}
-
-/* 段落中的代码如果需要特殊区分则可以在这里覆盖，否则就按上面保持一致 (完全恢复参考样式 inlineCodePlain) */
-main .post p code,
-p code {
-  color: var(--text-code) !important;
-  font-size: 14px !important;
-  line-height: 1.8em !important;
-  background-color: var(--bg-section) !important;
-  border: 0.5px solid var(--border-light) !important;
-  border-radius: 8px !important;
-  padding: 2px 4px !important;
-  margin: 0 2px !important;
-  transform: none !important;
+  font-family: inherit !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  color: inherit !important;
+  font-size: inherit !important;
 }
 
 /* ========================================
@@ -432,8 +352,8 @@ figure {
 
 figure img {
   display: block;
-  margin: 0 auto;
-  max-width: 100%;
+  margin: 16px auto;
+  max-width: 60%;
   border-style: none;
   border-width: 3px;
   border-color: rgba(0, 0, 0, 0.4);
@@ -445,8 +365,8 @@ figure img {
 
 img {
   display: block;
-  margin: 15px auto;
-  max-width: 100%;
+  margin: 16px auto;
+  max-width: 60%;
   border-style: none;
   border-width: 3px;
   border-color: rgba(0, 0, 0, 0.1);
@@ -461,20 +381,13 @@ img {
    ======================================== */
 
 hr {
-  margin: 20px 10px 10px;
+  margin: 32px 10px !important;
   padding: 0;
   border-top: 1px dashed var(--border-dashed);
   border-bottom: none;
   border-left: none;
   border-right: none;
-  background-color: transparent;
-  background-image: none;
-  background-origin: padding-box;
-  background-position: left top;
-  background-repeat: no-repeat;
-  background-size: auto;
-  width: auto;
-  height: auto;
+  background: transparent;
 }
 
 /* ========================================
@@ -483,22 +396,14 @@ hr {
 
 strong,
 b {
-  color: var(--text-strong);
-  font-weight: bold;
-  background-attachment: scroll;
-  background-clip: border-box;
-  background-color: transparent;
-  background-image: none;
-  background-origin: padding-box;
-  background-position: left top;
-  background-repeat: no-repeat;
-  background-size: auto;
-  width: auto;
-  height: auto;
-  margin: 0;
-  padding: 0;
-  border: none;
-  border-radius: 0;
+  font-weight: bold !important;
+  color: inherit !important;
+  font-size: inherit !important;
+  font-family: inherit !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 em,
@@ -649,15 +554,12 @@ li.post {
 
 .post-meta code,
 .article-meta code {
-  font-size: 0.9em;
-  font-family: var(--font-mono);
-  padding: 2px 4px;
-  vertical-align: baseline;
-  background-color: var(--bg-card);
-  color: var(--juya-orange);
-  border: 0.5px solid var(--border-light);
-  border-radius: 6px;
-  font-weight: normal;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 
 
@@ -1220,24 +1122,24 @@ footer {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-cream: rgb(30, 30, 28);
-    --bg-card: rgb(40, 40, 38);
-    --bg-section: rgb(50, 50, 48);
-    --bg-alt: rgb(45, 45, 43);
-    --bg-white: rgb(35, 35, 33);
+    --bg-cream: rgb(28, 27, 26);
+    --bg-card: rgb(36, 34, 32);
+    --bg-section: rgb(44, 41, 39);
+    --bg-alt: rgb(31, 30, 29);
+    --bg-white: rgb(26, 24, 23);
 
     --text-dark: rgb(230, 230, 225);
-    --text-black: rgb(220, 220, 215);
-    --text-muted: rgb(180, 180, 175);
-    --text-strong: rgb(255, 255, 250);
-    --text-code: rgb(255, 180, 150);
+    --text-black: rgb(230, 230, 225);
+    --text-muted: rgb(155, 152, 148);
+    --text-strong: rgb(255, 255, 255);
+    --text-code: rgb(230, 230, 225);
 
-    --border-light: rgb(80, 80, 75);
-    --border-medium: rgb(90, 90, 85);
-    --border-dashed: rgb(100, 100, 95);
+    --border-light: rgb(59, 56, 53);
+    --border-medium: rgb(74, 70, 66);
+    --border-dashed: rgb(59, 56, 53);
 
-    --juya-orange: rgb(255, 150, 100);
-    --juya-orange-light: rgb(255, 180, 120);
+    --juya-orange: rgb(255, 142, 83);
+    --juya-orange-light: rgb(255, 168, 125);
     --juya-green: rgb(120, 220, 140);
   }
 
