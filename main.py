@@ -24,11 +24,14 @@ RSS_MAX_ITEMS = 10
 WEBFEEDS_NS = "http://webfeeds.org/rss/1.0"
 RSS_SERVICE_NOTICE = "RSS正常提供服务中，但Folo存在问题，接收不到最新文章。建议使用其他RSS阅读器"
 
-MD_HEAD = """# 橘鸦AI早报
+MD_HEAD = """# 橘鸦AI早报（精简版）
 
-> 本仓库将AI早报备份为Markdown存档并自动生成RSS订阅。资讯内容由AI辅助生成，可能存在错误，请以原始信息出处和官方信息为准。内容从互联网上获取，如有侵权请联系删除。
+> 本仓库 Fork 自 [imjuya/juya-ai-daily](https://github.com/imjuya/juya-ai-daily)，渲染上游全部 Issue，自动生成 RSS 订阅。
+> 原仓库地址：[https://imjuya.github.io/juya-ai-daily/](https://imjuya.github.io/juya-ai-daily/)
+> 原 RSS 订阅：[https://imjuya.github.io/juya-ai-daily/rss.xml](https://imjuya.github.io/juya-ai-daily/rss.xml)
+> 资讯内容由AI辅助生成，可能存在错误，请以原始信息出处和官方信息为准。内容从互联网上获取，如有侵权请联系删除。
 
-正式订阅地址：https://imjuya.github.io/juya-ai-daily/rss.xml
+正式订阅地址：{feed_subscribe_url}
 
 {rss_service_notice}
 
@@ -36,9 +39,10 @@ MD_HEAD = """# 橘鸦AI早报
 
 | Platform | Link |
 | :--- | :--- |
+| 本站（fork） | [{pages_base_url}]({pages_base_url}) |
 | RSS Feed | [Subscribe]({feed_subscribe_url}) |
+| 上游仓库 | [imjuya/juya-ai-daily](https://github.com/imjuya/juya-ai-daily) |
 | Markdown 备份 | [BACKUP](https://github.com/{repo_name}/tree/{branch_name}/BACKUP) |
-| GitHub Pages | [View](https://imjuya.github.io/juya-ai-daily/) |
 | 第三方多功能阅读器（@ViggoZ 制作） | [juya-daily](https://viggoz.github.io/juya-daily/) |
 | AI早报 视频版-Bilibili | [Bilibili](https://space.bilibili.com/285286947) |
 | AI早报 视频版-YouTube | [YouTube](https://www.youtube.com/@imjuya) |
@@ -258,6 +262,7 @@ def add_md_header(md, repo_name, feed_filename, branch_name):
             MD_HEAD.format(
                 repo_name=repo_name,
                 branch_name=branch_name,
+                pages_base_url=get_pages_base_url(repo_name),
                 feed_subscribe_url=get_pages_feed_url(repo_name, feed_filename),
                 rss_service_notice=RSS_SERVICE_NOTICE,
             )
