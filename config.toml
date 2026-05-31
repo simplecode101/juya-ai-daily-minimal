@@ -1,4 +1,4 @@
-base_url = "https://imjuya.github.io/juya-ai-daily/"
+base_url = "https://simplecode101.github.io/juya-ai-daily-minimal/"
 generate_feeds = true
 feed_filenames = ["rss.xml"]
 theme = "even"
@@ -7,7 +7,7 @@ taxonomies = [
     {name = "tags", feed = true},
 ]
 [extra]
-even_title = "橘鸦AI早报"
+even_title = "橘鸦AI早报精简版"
 even_menu = [
     {url = "https://imjuya.github.io/juya-ai-daily", name = "Home"},
     {url = "https://imjuya.github.io/juya-ai-daily/tags/top/", name = "Top"},
