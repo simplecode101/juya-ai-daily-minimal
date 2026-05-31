@@ -38,7 +38,7 @@ jobs:
 
       - name: Generate new md
         run: |
-          python main.py ${{ secrets.G_T }} ${{ github.repository }} --issue_number '${{ github.event.issue.number }}'
+          python main.py ${{ github.token }} ${{ github.repository }} --issue_number '${{ github.event.issue.number }}'
 
       - name: Push README
         run: |
