@@ -1,6 +1,8 @@
 name: Generate GitBlog README
 
 on:
+  schedule:
+    - cron: '0 2 * * *'   # 每天 10:00 北京时间
   workflow_dispatch:
   issues:
     types: [opened, edited]

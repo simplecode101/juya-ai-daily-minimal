@@ -14,6 +14,9 @@ from lxml.etree import tostring
 from marko.ext.gfm import gfm as marko
 
 PRIMARY_FEED_FILENAME = "rss.xml"
+
+# 上游原仓库，所有 Issue 内容从此读取
+UPSTREAM_REPO = "imjuya/juya-ai-daily"
 FEED_ICON_PATH = "static/icon.png"
 FEED_ICON_SIZE = 144
 RSS_SUMMARY_MAX_CHARS = 360
@@ -77,15 +80,11 @@ def get_me_from_repo(repo):
 
 
 def is_me(issue, me):
-    return issue.user.login == me
+    return True
 
 
 def is_hearted_by_me(comment, me):
-    reactions = list(comment.get_reactions())
-    for r in reactions:
-        if r.content == "heart" and r.user.login == me:
-            return True
-    return False
+    return True
 
 
 def _make_friend_table_string(s):
@@ -474,7 +473,7 @@ def generate_rss_feed(repo, filename, me):
 
 def main(token, repo_name, issue_number=None, dir_name=BACKUP_DIR):
     user = login(token)
-    repo = get_repo(user, repo_name)
+    repo = get_repo(user, UPSTREAM_REPO)
     me = get_me_from_repo(repo)
     default_branch = repo.default_branch or "master"
     # add to readme one by one, change order here
